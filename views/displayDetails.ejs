@@ -1,0 +1,80 @@
+<% include header %>
+<h2>Details</h2>
+<table border="2"> 
+	<tr><th>Host</th><th>OS</th><th>Kernel</th></tr>
+	<tr><td><%=rs[0].hostname%></td><td><%=rs[0].os%></td><td><%=rs[0].kernel%></td></tr>
+</table>
+<div id="details">
+	<table border="1">
+		<tr><th>Hardware</th><th>type</th><th>Number</th></tr>
+		<% for (var i = 0; i < hw.length; i++) { %>
+		<tr><td><%= hw[i].name %></td><td><%= hw[i].type %></td><td><%= hw[i].number %></td></tr>
+		<% } %>
+	</table>
+</div>
+<div id="notes">
+	<h2>Hardware Notes</h2>
+	<%for (var i = 0; i < hwnotes.length; i++) { %>
+	-<%= hwnotes[i].note%><br>
+	<% } %>
+	<br>
+	<form method="post" action="/server/editNote">
+			<input type="hidden" name="sn" value="<%= rs[0].sn %>">
+			<button type="submit" value="submit">Edit Hardware Note</button>
+	</form>
+</div>
+<div id="details">
+	<table border="1">
+		<tr><th>Updates</th><th>Version</th><th>reboot?</th></tr>
+		<% for (var i = 0; i < updates.length; i++) { %>
+		<tr><td><%= updates[i].name %></td><td><%= updates[i].version %></td><td><%= updates[i].reboot %></td></tr>
+		<% } %>
+	</table>
+</div>
+<div id="notes">
+	<h2>Host Notes</h2>
+	<%for (var i = 0; i < hostnotes.length; i++) { %>
+	-<%= hostnotes[i].note%><br>
+	<% } %>
+	<br>
+	<form method="post" action="/host/editNote">
+			<input type="hidden" name="hostname" value="<%= rs[0].hostname %>">
+			<button type="submit" value="submit">Edit Host Note</button>
+	</form>
+</div>
+<div id="info">
+	<table border="2"> 
+		<tr><th>Serial Number</th><th>IP</th></tr>
+		<tr><td><%=rs[0].sn%></td><td><%=rs[0].ip%></td></tr>
+	</table>
+</div>
+<table>
+	<tr><td>
+	<form method="post" action="/host/edit">
+			<input type="hidden" name="hostname" value="<%= rs[0].hostname %>">
+			<input type="hidden" name="sn" value="<%= rs[0].sn %>">
+			<button type="submit" value="submit">Edit Host</button>
+		</form>
+	</td>
+	<td>
+		<form method="post" action="/server/edit">
+			<input type="hidden" name="sn" value="<%= rs[0].sn %>">
+			<button type="submit" value="submit">Edit Server</button>
+		</form>
+	</td>
+</tr>
+<tr><td>
+	<form method="post" action="/host/delete">
+		<input type="hidden" name="hostname" value="<%= rs[0].hostname %>">
+		<button type="submit" value="submit">Delete Host</button>
+	</form>
+</td>
+<td>
+	<form method="post" action="/server/delete">
+		<input type="hidden" name="server" value="<%= rs[0].sn %>">
+		<button type="submit" value="submit">Delete Server</button>
+	</form>
+</td>
+</tr>
+</table>
+<% include footer %>

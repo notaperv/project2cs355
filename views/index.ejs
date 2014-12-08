@@ -1,0 +1,35 @@
+<% include header %>
+<table border='0'>
+	<tr>
+		<td>
+			<form method="get" action="/host/add">
+				<button type="submit" value="submit">Add Host</button>
+			</form>
+		</td>
+		<td>
+			<form method="get" action="/server/add">
+				<button type="submit" value="submit">Add Server</button>
+			</form>
+		</td>
+	</tr>
+<table border='1'>
+	<tr>
+		<th>Hostname</th>
+		<th>IP</th>
+		<th>OS</th>
+		<th>Kernel</th>
+		<th>Location</th>
+	</tr>
+	<% for (var i=0; rs.length > i; i++) { %>
+	<tr>
+		<td><a href="/details/?host=<%= rs[i].hostname %>"> <%= rs[i].hostname %></a></td>
+		<td><%= rs[i].ip %></td>
+		<td><%= rs[i].os %></td>
+		<td><%= rs[i].kernel %></td>
+		<td><%= rs[i].location %></td>
+	</tr>
+	<% } %>
+</table>
+
+<% var hideBackLink = true; %>
+<% include footer %>

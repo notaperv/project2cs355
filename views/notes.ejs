@@ -1,0 +1,10 @@
+<% include header %>
+<form action="<%= action %>" method="post">
+<input type="hidden" name="name" value="<%= name %>">
+<h2>Add Note to <%= type %> <%= name %></h2>
+<textarea rows="4" cols="50" name="note">
+Note
+</textarea><br>
+<input type="submit" value="Save Note">
+</form>
+<% include footer %>

@@ -1,0 +1,24 @@
+<% include header %>
+<h1>Add Host</h1>	
+<form method="post" action="<%= action %>">
+<input type="hidden" name="oldhostname" value="<%= hostname %>">
+Hostname<br>
+<input type="text" name="hostname" value="<%= hostname %> "><br>
+IP<br>
+<input type="text" name="ip" value="<%= ip %>"><br>
+OS<br>
+<input type="text" name="os" value="<%= os %>"><br>
+kernel<br>
+<input type="text" name="kernel" value="<%= kernel %>"><br>
+
+       <label for="Server">Server</label><br>
+       <select id="server" name="Server">
+            <% for (var i=0; servers.length > i; i++) { %>
+             <option value="<%= servers[i].sn %>">
+                <%= servers[i].sn %>
+             </option>
+            <% } %>
+       </select>
+<input type="submit" value="Save">
+</form>
+<% include footer %>

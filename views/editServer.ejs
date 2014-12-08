@@ -1,0 +1,62 @@
+<% include header %>
+<h1>Add/Edit Server</h1>
+<form method="post" action="<%= action %>">
+<input type="hidden" name="oldsn" value="<%= server[0].sn %>">
+	Serial Number<br>
+	<input type="text" name="sn" value="<%= server[0].sn %>"><br>
+	<label for="Memory">Memory Type</label><br>
+	<select id="memType" name="memType">
+		<% for (var i=0; memType.length > i; i++) { %>
+		<option value="<%= memType[i].id %>" <% if (memType[i].id == server[0].memType) { %> selected="selected" <% } %>>
+			<%= memType[i].name %>
+		</option>
+		<% } %>
+	</select>
+	Amount(GB)
+	<input type="text" name="memoryAmount" value="<%= server[0].memoryAmount %>"><br>
+	<label for="cpu">CPU Type</label><br>
+	<select id="cpuType" name="cpuType">
+		<% for (var i=0; cpuType.length > i; i++) { %>
+		<option value="<%= cpuType[i].id %>" <% if (cpuType[i].id == server[0].cpuType) { %> selected="selected" <% } %>>
+			<%= cpuType[i].name %>
+		</option>
+		<% } %>
+	</select>
+	Amount(Cores)
+	<input type="text" name="cpuAmount" value="<%= server[0].cpuAmount %>"><br>
+	
+	<script language="Javascript" type="text/javascript">
+	var counter = <%= hdlist.length %>;
+	var limit = 4;
+	function addInput(divName){
+     if (counter == limit)  {
+          alert("You have reached the limit of adding " + counter + " inputs");
+     }
+     else {
+          var newdiv = document.createElement('div');
+          newdiv.innerHTML= "Harddrive " + (counter + 1)  + "<br>Type<input type='text' name='harddrivetype[]'><br>Size<input type='text' name='harddrivesize[]'><br>";
+          document.getElementById(divName).appendChild(newdiv);
+          counter++;
+     }
+}
+	</script>
+	Harddrives<br>
+		<div id="harddrives">
+		<% for(var h = 0; hdlist.length > h; h++) { %>
+		Harddrive <%= h + 1%> <br>
+		Type<input type="text" name="harddrivetype[]" value="<%= hdlist[h].model %>"><br>
+		Size<input type="text" name="harddrivesize[]" value="<%= hdlist[h].size %>"><br>
+		<% } %>
+		</div>
+		<input type="button" value="Add another Harddrive" onClick="addInput('harddrives');"><br>
+	<label for="location">Location</label><br>
+	<select id="location" name="location">
+		<% for (var i=0; location.length > i; i++) { %>
+		<option value="<%= location[i].id %>" <% if (location[i].id == server[0].location) { %> selected="selected" <% } %>>
+			<%= location[i].name %>
+		</option>
+		<% } %>
+	</select><br>
+<input type="submit" value="save">
+</form>
+<% include footer %>

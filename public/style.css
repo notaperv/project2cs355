@@ -1,0 +1,32 @@
+
+#details {
+	float:left;
+	clear:left;
+	padding-right:50px;
+	padding-left:10px;
+	padding-top:10px;
+	padding-bottom:25px;
+	width:320px;
+}
+
+#notes {
+	float:left;
+	clear:right;
+	background-color: #f8f8f8;
+}
+
+#info {
+	clear:both;
+	padding-top:10px;
+	padding-bottom:25px;
+}
+
+footer {
+    margin-top:20px;
+    clear:both;
+}
+
+header {
+    margin-bottom:20px;
+}
+
